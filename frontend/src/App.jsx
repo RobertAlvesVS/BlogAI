@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 // Configuração do Supabase - SUBSTITUA com suas credenciais
 const SUPABASE_URL = 'https://belsfnrhdrkzlgqdmora.supabase.co';
@@ -813,9 +815,9 @@ export default function AIBlog() {
                   </div>
                 )}
                 <div className="post-body">
-                  {currentPost.conteudo.split('\n\n').map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {currentPost.conteudo}
+                  </ReactMarkdown>
                 </div>
               </>
             )}

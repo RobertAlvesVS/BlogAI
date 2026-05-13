@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: blogai_backend
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: blogai_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend

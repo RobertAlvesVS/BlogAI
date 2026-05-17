@@ -5,7 +5,7 @@ from database import get_supabase
 
 
 async def criar_post():
-    async with httpx.AsyncClient() as client:
+    async with httpx.AsyncClient(timeout=120.0) as client:
         url = settings.URLOPENROUTER
         headers = {
             "Authorization": f"Bearer {settings.KEYOPENROUTER}",
